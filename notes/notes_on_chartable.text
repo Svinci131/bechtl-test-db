@@ -1,0 +1,15 @@
+Fetching data from the web, only characters with an active page
+on the web site will have their characterID;
+
+we don't have these information accessing "sql", so 
+
+_every_ character will have an associated characterID.
+
+This way, every character with the same name will share the same
+characterID, even if - in fact - they may not be portraying the
+same character.
+
+actress id: 33373 role id 265056 person_role_id undefined
+
+//33373 matches julie andrews 
+//265056 is the kitten owners?

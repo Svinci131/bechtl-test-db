@@ -1,0 +1,19 @@
+//https://github.com/worr/node-imdb-api/blob/master/lib/imdb.js
+
+
+NEW PLAN: 
+
+///mubi.everymovieever
+//imdb- year - 
+
+http://www.imdb.com/year/
+
+///for ever movie in sql db 
+///hit rotten tomato api
+//create a new row 
+
+
+SCRIPT OPTIONS: 
+//http://www.dailyscript.com/scripts/Jason_X_early.html
+//https://www.nyfa.edu/student-resources/10-great-websites-download-movie-scripts/
+//http://opendata.stackexchange.com/questions/5589/movie-script-database

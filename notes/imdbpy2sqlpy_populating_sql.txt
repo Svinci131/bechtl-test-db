@@ -1,0 +1,54 @@
+-the imdbpy2sql.py script, used to populate a database using
+the data in the IMDb's plain text data files, is a critical piece
+of IMDbPY
+
+--every database supported by the SQLObject
+Object Relational Manager can be used to store and retrieve
+movies and persons information.
+This means that MySQL, PostgreSQL, SQLite, Firebird, MAX DB,
+Sybase and MSSQL are supported 
+
+*-use this script to convert to sql or psql and then go from there 
+// /usr/local/Cellar/python/2.7.11: 4,886 files, 66.0M
+
+
+
+SQLObject or SQLAlchemy (both can be installed
+safely: by default IMDbPY first tries SQLObject; if not present
+it fall-backs to SQLAlchemy).
+
+-SQLObject home page: http://sqlobject.org/
+SVN command to download the latest development version:
+  svn co http://svn.colorstudy.com/SQLObject/trunk SQLObject
+https://sourceforge.net/p/imdbpy/mailman/message/28209225/
+///
+//To create the tables and to populate the database, you must run
+the imdbpy2sql.py script:
+  # imdbpy2sql.py -d /dir/with/plainTextDataFiles/ -u 'URI'
+
+//http://stackoverflow.com/questions/17872014/using-imdbpy2sql-py-to-populate-postgresql
+
+  SQL DATABASE INSTALLATION
+  --------
+
+  Select a mirror of the "The Plain Text Data Files" from
+the http://www.imdb.com/interfaces/ page and download
+every file in the main directory (beware that the "diffs"
+subdirectory contains _a lot_ of files you _don't_ need,
+so don't start mirroring everything!).
+
+Create a database named "imdb" (or whatever you like),
+using the tool provided by your database; as an example, for MySQL
+you will use the 'mysqladmin' command:
+  # mysqladmin -p create imdb
+For PostgreSQL, you have to use the "createdb" command:
+  # createdb -W imdb
+
+
+To create the tables and to populate the database, you must run
+the imdbpy2sql.py script:
+  # imdbpy2sql.py -d /dir/with/plainTextDataFiles/ -u 'URI'
+
+//from python scripts folder  
+
+imdbpy2sql.py -d /Users/samanthavinci/Documents/bechtl-test/dbs -u postgres://localhost:5432/imdb
