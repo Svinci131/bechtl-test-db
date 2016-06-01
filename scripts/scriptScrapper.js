@@ -71,7 +71,7 @@ class Cast  {
 			this.delimiter = delimiter;
 		}
 		else {
-			return "\n"
+			this.delimiter = "\n"
 		}
 		
 	}
@@ -170,46 +170,44 @@ function checkScript (title, list, list2) {
 	.then(function(text) {
 		Movie.findDelimiter(text);
 		var	lines = text.split(Movie.delimiter); 
-		// var doubleSplit = [];"\n""\n"
-		// if (Movie.delimiter !== "\n") {
-		// 	lines.forEach(line => {
-		// 		line.split("\n")
-		// 	})
-		// }
 	
 		return lines;
 
 	})
 	.then(lines => {
 		var doubleSplit = []; 
-		if (Movie.delimiter !== " ") {
+		if (Movie.delimiter !== "\n") {
 			lines.forEach((line, i) => 
 			{
 				var index = line.lastIndexOf("\n"); 
 				var text = line.slice(0,index);
 				var name = line.slice(index+1, line.lenth);
-				console.log("Line", green(text));
-				console.log("name", name);
-				// line.split()
+				doubleSplit.push(line);
+				doubleSplit.push(name);
+				// console.log("Line", green(text));
+				// console.log("name", name);
 			});
+			return doubleSplit 
+		}
+		else {
+			return lines
+		} 
+	})
+	.then(lines => {
+		var line;
+		
+		for (let i = 0; i < lines.length; i++) {
+			line = lines[i];
+				console.log(lines.length)
+			if (Movie.isFemaleName(line)) {
+				
+		// 		var firstSpeaker = new Line(line, lines[i+1], i);
+		// 		//console.log(firstSpeaker);
+				break; 
+			}
 		}
 		
 	})
-	// .then(lines => {
-	// 	var line;
-	
-	// 	for (let i = 0; i < lines.length; i++) {
-	// 		line = lines[i];
-			
-	// 		if (Movie.isFemaleName(line)) {
-				
-	// 	// 		var firstSpeaker = new Line(line, lines[i+1], i);
-	// 	// 		//console.log(firstSpeaker);
-	// 			break; 
-	// 		}
-	// 	}
-		
-	// })
 	.catch(err => {
 		console.log(red(err));
 	});
@@ -264,11 +262,10 @@ function checkIMSDB (url) {
 }
 
 
-// var heavenly_creatures = checkScript ("Heavenly-Creatures", ["Dr. Henry Hulme", "Herbert Rieper", "Bill Perry"], ["JULIET HULME", "PAULINE RIEPER", "HONORA"])
-var aladin = checkScript ("Aladdin", ["PEDDLar", "jafar", "aladdin"], ["Jasmine"]);
-
-//console.log(heavenly_creatures);
-console.log(aladin);
+var heavenly_creatures = checkScript ("Heavenly-Creatures", ["Dr. Henry Hulme", "Herbert Rieper", "Bill Perry"], ["JULIET HULME", "PAULINE RIEPER", "HONORA"])
+//var aladin = checkScript ("Aladdin", ["PEDDLar", "jafar", "aladdin"], ["Jasmine"]);
+console.log(heavenly_creatures);
+// console.log(aladin);
 
 //heavenly_creatures
 //http://www.imsdb.com/heavenly_creatures
