@@ -48,7 +48,6 @@ class Cast  {
 	}
 	//(string) => string
 	findDelimiter (text) {
-
 		var name,
 			holder = [],
 			delimiter;
@@ -68,9 +67,12 @@ class Cast  {
 		}
 
 		if (delimiter !== " ") {
+			// return delimiter
 			this.delimiter = delimiter;
 		}
-
+		else {
+			return "\n"
+		}
 		
 	}
 
@@ -167,24 +169,47 @@ function checkScript (title, list, list2) {
 	checkIMSDB (url)
 	.then(function(text) {
 		Movie.findDelimiter(text);
-		var	lines = text.split("\n"); 
+		var	lines = text.split(Movie.delimiter); 
+		// var doubleSplit = [];"\n""\n"
+		// if (Movie.delimiter !== "\n") {
+		// 	lines.forEach(line => {
+		// 		line.split("\n")
+		// 	})
+		// }
+	
 		return lines;
 
-	}).then(lines => {
-		var line;
-	
-		for (let i = 0; i < lines.length; i++) {
-			line = lines[i];
-			
-			if (Movie.isFemaleName(line)) {
-					console.log(green(line));
-		// 		var firstSpeaker = new Line(line, lines[i+1], i);
-		// 		//console.log(firstSpeaker);
-				break; 
-			}
+	})
+	.then(lines => {
+		var doubleSplit = []; 
+		if (Movie.delimiter !== " ") {
+			lines.forEach((line, i) => 
+			{
+				var index = line.lastIndexOf("\n"); 
+				var text = line.slice(0,index);
+				var name = line.slice(index+1, line.lenth);
+				console.log("Line", green(text));
+				console.log("name", name);
+				// line.split()
+			});
 		}
 		
 	})
+	// .then(lines => {
+	// 	var line;
+	
+	// 	for (let i = 0; i < lines.length; i++) {
+	// 		line = lines[i];
+			
+	// 		if (Movie.isFemaleName(line)) {
+				
+	// 	// 		var firstSpeaker = new Line(line, lines[i+1], i);
+	// 	// 		//console.log(firstSpeaker);
+	// 			break; 
+	// 		}
+	// 	}
+		
+	// })
 	.catch(err => {
 		console.log(red(err));
 	});
