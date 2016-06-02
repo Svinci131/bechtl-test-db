@@ -1,5 +1,13 @@
 'use strict'
 
+
+class Conversation {
+	constructor(personA, personB) {
+		this.personA = personA;
+		this.personB = personB;
+	}
+
+}
 class Line {
 	constructor(speaker, line, index) {
 		this.speaker = speaker.trim(); 
@@ -9,7 +17,10 @@ class Line {
 
 }
 
-module.exports = Line;
+module.exports = {
+	Line: Line,
+	Conversation: Conversation
+}
 
 //Name, Line, index (text);
 

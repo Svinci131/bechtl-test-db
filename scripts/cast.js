@@ -2,7 +2,7 @@
 
 const charSet = require('./charecterSets');
 const utils = require('./utils');
-const Line = require('./line');
+const Line = require('./line').Line;
 
 
 class Cast  {

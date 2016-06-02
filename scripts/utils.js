@@ -1,7 +1,7 @@
 'use strict' 
 
 function removePrefixes (string) {
-	return string.replace(/Dr.|Mr.| Sir | Lord| Judge/, ""); 
+	return string.replace(/Dr.|Mr.| Sir | Lord | Agent | Judge/, ""); 
 }
 
 //(string) => boolean
