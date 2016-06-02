@@ -10,7 +10,10 @@ const expect = chai.expect;
 const checkScript = require ('../scripts/scriptScrapper');
 const heavenly_creatures = checkScript ("Heavenly-Creatures", ["Dr. Henry Hulme", "Herbert Rieper", "Bill Perry"], ["JULIET HULME", "PAULINE RIEPER", "HONORA"])
 const aladdin = checkScript ("Aladdin", ["PEDDLar", 'prince','SULTAN', "jafar", "aladdin"], ["Jasmine"]);
-const avengers = checkScript("Avengers,-The-(2012)", ["AGENT MARIA HILL", "NATASHA"], ["AGENT PHIL COULSON", "NICK FURY", "LOKI"]);
+const avengers = checkScript("Avengers,-The-(2012)", ["AGENT PHIL COULSON", "NICK FURY", "LOKI"], ["AGENT MARIA HILL", "NATASHA"]);
+
+
+
 
 
 describe('checkScript', function () {
