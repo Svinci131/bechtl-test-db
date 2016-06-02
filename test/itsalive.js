@@ -13,9 +13,6 @@ const aladdin = checkScript ("Aladdin", ["PEDDLar", 'prince','SULTAN', "jafar", 
 const avengers = checkScript("Avengers,-The-(2012)", ["AGENT PHIL COULSON", "NICK FURY", "LOKI"], ["AGENT MARIA HILL", "NATASHA"]);
 
 
-
-
-
 describe('checkScript', function () {
 	it('returns a false for movies with only one female charecter', function () {
 		aladdin.then(bool => {

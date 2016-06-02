@@ -14,10 +14,12 @@ const Movie = require("./movie");
 
 ///(string, arr, arr) => boolean
 function checkScript (title, list, list2) {
+
 	var url = rootURl+title+".html",
 		movie = new Movie(title, [list, list2]);
 		movie.cast.setNameVariations();
 	var femaleCharCount = movie.cast.femaleChars.originalNameList.length;
+	
 	//if less than two female chars return false
 	if (femaleCharCount < 2) {
 		return new Promise((res, rej) => {
@@ -30,13 +32,6 @@ function checkScript (title, list, list2) {
 }
 
 module.exports = checkScript;
-
-
-
-//heavenly_creatures
-//http://www.imsdb.com/heavenly_creatures
-	//download and read 
-	//http://www.imsdb.com/scripts/Heavenly-Creatures.html
 
 
 

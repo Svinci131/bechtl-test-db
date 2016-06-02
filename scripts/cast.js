@@ -8,7 +8,6 @@ const Line = require('./line').Line;
 class Cast  {
 
 	constructor (maleList, femaleList) {
-		this.delimiter; 
 		this.maleChars = new charSet ("male", maleList);
 		this.femaleChars = new charSet ("female", femaleList);
 		this.all = this.maleChars.originalNameList.concat(this.femaleChars.originalNameList);
@@ -39,37 +38,6 @@ class Cast  {
 			return false;
 		}
 	}
-	//(string) => string
-	findDelimiter (text) {
-		var name,
-			holder = [],
-			delimiter;
-
-		for (let i = 0; i <= 500; i++) {
-			name = holder.join("").toLowerCase();
-			holder.push(text[i]);
-			
-			if (text[i] === '\n') {
-				holder = [];
-			}
-
-			if (this.isName(name)) {
-				delimiter = text[i];
-				break;
-			}
-		}
-
-		if (delimiter !== " ") {
-			// return delimiter
-			this.delimiter = delimiter;
-		}
-		else {
-			this.delimiter = "\n"
-		}
-		
-	}
-
-
 	getNextSpeaker (prevLine, arr) {
 		var nextSpeaker,
 			nextLine, 
