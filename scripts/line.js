@@ -2,26 +2,11 @@
 
 class Line {
 	constructor(speaker, line, index) {
-		this.name = speaker; 
+		this.speaker = speaker.trim(); 
 		this.line = line;
 		this.index = index;
 	}
-	getNextSpeaker (movie, arr) {
-		var nextSpeaker,
-			nextLine, 
-			nextLineIndex = this.index+2;
-			
-		while (!nextSpeaker || nextSpeaker === this.name) {
-			nextLine = arr[nextLineIndex]; 
-		
-			if (movie.isName(nextLine)) {
-				// console.log(nextLine, movie.isName(nextLine))
-				nextSpeaker = nextLine;
-			}
-			nextLineIndex++
-		}
 
-	}
 }
 
 module.exports = Line;

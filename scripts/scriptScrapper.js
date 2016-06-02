@@ -38,6 +38,9 @@ class Cast  {
 	isName (string, filter) {
 		var femaleNames = this.getFemaleChars(),  
 			  maleNames = this.getMaleChars(); 
+		// if (string === "PAULINE") {
+		// 			console.log(string, femaleNames[string], femaleNames)
+		// }
 
 		if (femaleNames[string] || maleNames[string]) {
 			return true; 
@@ -81,14 +84,26 @@ class Cast  {
 		var nextSpeaker,
 			nextLine, 
 			nextLineIndex = prevLine.index+2;
-
-		while (!nextSpeaker || nextSpeaker === prevLine.name) {
-			nextLine = arr[nextLineIndex]; 
 		
-			if (this.isName(nextLine)) {
-				// console.log(nextLine, movie.isName(nextLine))
-				nextSpeaker = nextLine;
+		while (!nextSpeaker || nextSpeaker === prevLine.speaker) {
+		
+
+			if (arr[nextLineIndex]) {
+
+				nextLine = arr[nextLineIndex]; 
+				//console.log(nextLineIndex, nextLine)
+				//console.log(green(this.isName(nextLine.trim())))
+				// if (nextLineIndex >102) {
+				// 	break;
+				// }
+				if (this.isName(nextLine.toLowerCase().trim())) {
+					// console.log(nextLine, movie.isName(nextLine))
+					nextSpeaker = nextLine;
+				}
 			}
+			
+			
+			
 			nextLineIndex++
 		}
 		var nextLine = new Line(nextSpeaker, arr[nextLineIndex], nextLineIndex);
@@ -163,6 +178,7 @@ function checkScript (title, list, list2) {
 	//check for names: or other deliminators
 	.then(lines => {
 		var doubleSplit = []; 
+
 		if (Movie.delimiter !== "\n") {
 			lines.forEach((line, i) => 
 			{
@@ -176,8 +192,6 @@ function checkScript (title, list, list2) {
 				// if (i < 120) {
 				// 	console.log("Line", green(text));
 				// }
-
-				// console.log("name", name);
 			});
 			return doubleSplit 
 		}
@@ -187,14 +201,17 @@ function checkScript (title, list, list2) {
 	})
 	.then(lines => {
 		var line;
-		
+
 		for (let i = 0; i < lines.length; i++) {
 			line = lines[i];
 			//if female character
 			if (Movie.isFemaleName(line)) {
 				var firstLine = new Line(line, lines[i+1], i);
-				//console.log(firstLine)
-				Movie.getNextSpeaker(firstLine, lines);
+				console.log("first", firstLine)
+
+				var nextLine = Movie.getNextSpeaker(firstLine, lines);
+				
+				console.log("next", nextLine)
 				//console.log(lines[156]);
 				break; 
 			}
@@ -255,9 +272,9 @@ function checkIMSDB (url) {
 }
 
 
-//var heavenly_creatures = checkScript ("Heavenly-Creatures", ["Dr. Henry Hulme", "Herbert Rieper", "Bill Perry"], ["JULIET HULME", "PAULINE RIEPER", "HONORA"])
+var heavenly_creatures = checkScript ("Heavenly-Creatures", ["Dr. Henry Hulme", "Herbert Rieper", "Bill Perry"], ["JULIET HULME", "PAULINE RIEPER", "HONORA"])
 var aladin = checkScript ("Aladdin", ["PEDDLar", 'prince','SULTAN', "jafar", "aladdin"], ["Jasmine"]);
-//console.log(heavenly_creatures);
+console.log(heavenly_creatures);
 console.log(aladin);
 
 //heavenly_creatures

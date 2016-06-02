@@ -13,8 +13,8 @@ class charSet {
 	//add all variations of male names to object
 	setNames () {
 		this.originalNameList.forEach(function(name){
-			var LowerCase = name.toLowerCase();
-			var sansPrefix = utils.removePrefixes(name).trim();
+			var LowerCase = name.toLowerCase().replace(/['"]+/g, '');
+			var sansPrefix = utils.removePrefixes(name).replace(/['"]+/g, '').trim();
 			var firstName = sansPrefix.split(" ")[0].toLowerCase();
 				var arr = sansPrefix.split(" ");
 			var lastName = arr[arr.length-1].toLowerCase();
