@@ -24,7 +24,7 @@ function getMovieLinks (body) {
 			links = [].map.call(nodes, function(el){
 				el = $(el);
 				// var a = el.find("a");
-				return el[0].attribs;
+				return el[0].attribs.href;
 				// console.log(el[0].attribs);
 			});
 	return links;
