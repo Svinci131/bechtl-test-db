@@ -17,8 +17,17 @@ function getLongest (arr) {
 	return arr.sort(function (a, b) { return b.length - a.length; })[0];
 }
 
+function check (string, obj) {
+	var status = false;
+	if (obj[string]) {
+		status = true;
+	}
+	return status;
+}
+
 module.exports = {
 	removePrefixes: removePrefixes, 
 	isCap: isCap, 
-	getLongest: getLongest
+	getLongest: getLongest, 
+	check: check
 }

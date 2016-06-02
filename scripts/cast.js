@@ -31,12 +31,13 @@ class Cast  {
 		var femaleNames = this.getFemaleChars(),  
 			  maleNames = this.getMaleChars(); 
 
-		if (femaleNames[string] || maleNames[string]) {
-			return true; 
-		}
-		else {
-			return false;
-		}
+		return utils.check(string, femaleNames) || utils.check(string, maleNames) ;
+		// if (femaleNames[string] || maleNames[string]) {
+		// 	return true; 
+		// }
+		// else {
+		// 	return false;
+		// }
 	}
 	getNextSpeaker (prevLine, arr) {
 		var nextSpeaker,
@@ -44,7 +45,6 @@ class Cast  {
 			nextLineIndex = prevLine.index+2;
 		
 		while (!nextSpeaker || nextSpeaker === prevLine.speaker) {
-		
 
 			if (arr[nextLineIndex]) {
 
@@ -63,15 +63,9 @@ class Cast  {
 	//(string) => boolean
 	isFemaleName (line) {
 		var firstWord = line.split(this.delimiter)[0].toLowerCase();
-
 		var femaleNames = this.getFemaleChars();
-		var status = false;
+		return utils.check(firstWord, femaleNames);
 
-
-		if (femaleNames[firstWord]) {
-			status = true;
-		}
-		return status;
 	}
 
 
