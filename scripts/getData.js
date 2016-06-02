@@ -2,13 +2,12 @@ const request = require("request");
 const cheerio = require("cheerio");
 
 
-module.exports = function (url) {
+module.exports = function (url, cb) {
 	return new Promise (function (resolve, reject) {
 		request(url, function (error, response, body) {
 		  if (!error) {
-		    var $ = cheerio.load(body),
-		    	text = $("pre").text();
-		    	resolve(text);
+		  	var text = cb(body);
+		    resolve(text);
 		  }
 		  else {
 		  	reject(error);
@@ -17,5 +16,3 @@ module.exports = function (url) {
 		});
 	});
 };
-
-

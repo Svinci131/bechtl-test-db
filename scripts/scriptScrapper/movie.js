@@ -2,7 +2,8 @@
 
 var Cast = require("./cast");
 var maleWords = require("./words").maleWords;
-const checkIMSDB = require("./getData")
+const checkIMSDB = require("../getData");
+const selectPre = require("./selectPre");
 
 class Movie {
 	constructor (title, castlist) {
@@ -57,7 +58,7 @@ class Movie {
 	//(string) => boolean 
 	checkPassing (url) {
 		
-		return checkIMSDB (url)
+		return checkIMSDB (url, selectPre)
 		.then(function(text) {
 			this.findDelimiter(text);
 			var	lines = text.split(this.cast.delimiter); 
