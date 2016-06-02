@@ -45,7 +45,6 @@ function getCharacters (body) {
 				var actorLink = el.attribs.href;
 				el = $(el);
 				var actorName = $(el.find("span")).html()
-				console.log(charObj[i], i)
 				if (charObj[i]) {
 					charObj[i].actor = { name: actorName,
 				 				 	 link: actorLink };
@@ -56,31 +55,13 @@ function getCharacters (body) {
 				 				 	 link: actorLink };
 				}
 			})
-	console.log(charObj)
-	return characters;
+	// console.log(charObj)
+	return charObj;
 }
-
+ 
 var movieUrlRoot = "http://www.imdb.com/";
 
 getData("http://www.imdb.com/title/tt3499096/", getCharacters)
 .then(characters => {
 	// console.log(characters);
 });
-// var parent = $(".character>div>a").closest("td")
-// parent.prev
-// var closestActorCol = parent.siblings(".itemprop")
-// $(closestActorCol).find("a")
-// $(".character>div>a").find$("[itemprop='actor']");
-// var char = $(".character>div>a").closest('td').closest('td');
-// getData(url, getMovieLinks)
-// .then(links => {
-// 	console.log(links)
-// });
-
-
-	// /title/tt2869728/
-
-
-
-
-
