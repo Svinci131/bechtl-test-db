@@ -11,14 +11,16 @@ const utils = require('./utils');
 const Line = require('./line');
 
 
+
 class Cast  {
+
 	constructor (maleList, femaleList) {
 		this.delimiter; 
 		this.maleChars = new charSet ("male", maleList);
 		this.femaleChars = new charSet ("female", femaleList);
 		this.all = this.maleChars.originalNameList.concat(this.femaleChars.originalNameList);
-		this.lines = []; 
 	}
+
 	longest () {
 		utils.longest(this.all);
 	}
@@ -28,6 +30,11 @@ class Cast  {
 	getMaleChars () {
 		return this.maleChars.completeNameList; 
 	}
+	setNameVariations () {
+		this.maleChars.setNames();
+		this.femaleChars.setNames();
+	}
+
 	isName (string, filter) {
 		var femaleNames = this.getFemaleChars(),  
 			  maleNames = this.getMaleChars(); 
@@ -69,11 +76,24 @@ class Cast  {
 		
 	}
 
-	setNameVariations () {
-		this.maleChars.setNames();
-		this.femaleChars.setNames();
-	}
 
+	getNextSpeaker (prevLine, arr) {
+		var nextSpeaker,
+			nextLine, 
+			nextLineIndex = prevLine.index+2;
+
+		while (!nextSpeaker || nextSpeaker === prevLine.name) {
+			nextLine = arr[nextLineIndex]; 
+		
+			if (this.isName(nextLine)) {
+				// console.log(nextLine, movie.isName(nextLine))
+				nextSpeaker = nextLine;
+			}
+			nextLineIndex++
+		}
+		var nextLine = new Line(nextSpeaker, arr[nextLineIndex], nextLineIndex);
+		return nextLine;
+	}
 	//(string) => boolean
 	isFemaleName (line) {
 		var firstWord = line.split(this.delimiter)[0].toLowerCase();
@@ -87,6 +107,8 @@ class Cast  {
 		}
 		return status;
 	}
+
+
 }
 
 
@@ -119,37 +141,8 @@ function checkSubject (line) {
 	return talkingAboutAMan;
 }
 
-//(string) => boolean || obj
-function checkNextSpeaker (lastSpeaker, index, arr) {
-	var nextSpeaker,
-		currLine, 
-		i = index+1,
-		longest = longestCharName();
 
 
-	while (!nextSpeaker || nextSpeaker === lastSpeaker) {
-		currLine = arr[i]; 
-		
-		if (0 < currLine.length && currLine.length <= longest.length) {
-			nextSpeaker = currLine;
-			currLine = arr[i+1];			
-		}
-		i++;
-	}
-
-	if (!isFemaleName(nextSpeaker)) {
-		return false; 
-	}
-
-	else {
-		return {
-			nextSpeaker: nextSpeaker,
-			index: i+1,
-			line: currLine
-		}
-	}
-	// console.log("next",i, nextSpeaker, arr[i] );
-}
 
 
 ///(string) => boolean
@@ -197,12 +190,12 @@ function checkScript (title, list, list2) {
 		
 		for (let i = 0; i < lines.length; i++) {
 			line = lines[i];
-			//console.log(i, line)
 			//if female character
 			if (Movie.isFemaleName(line)) {
-				//var firstLine = new Line(line, lines[i+1], i);
-				console.log(line)
-				console.log(lines[156]);
+				var firstLine = new Line(line, lines[i+1], i);
+				//console.log(firstLine)
+				Movie.getNextSpeaker(firstLine, lines);
+				//console.log(lines[156]);
 				break; 
 			}
 		}
