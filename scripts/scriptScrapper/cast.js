@@ -32,12 +32,6 @@ class Cast  {
 			  maleNames = this.getMaleChars(); 
 
 		return utils.check(string, femaleNames) || utils.check(string, maleNames) ;
-		// if (femaleNames[string] || maleNames[string]) {
-		// 	return true; 
-		// }
-		// else {
-		// 	return false;
-		// }
 	}
 	getNextSpeaker (prevLine, arr) {
 		var nextSpeaker,

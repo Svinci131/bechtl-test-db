@@ -6,7 +6,7 @@ chai.use(spies);
 
 const should = chai.should();
 const expect = chai.expect;
-const Movie = require ('../scripts/movie');
+const Movie = require ('../scripts/scriptScrapper/movie');
 const aladdin = new Movie ("Aladdin", [["PEDDLar", 'prince','SULTAN', "jafar", "aladdin"], ["Jasmine"]]);
 const avengers = new Movie ("Avengers,-The-(2012)", [["AGENT PHIL COULSON", "NICK FURY", "LOKI"], ["AGENT MARIA HILL", "NATASHA"]]);
 
